@@ -20,11 +20,11 @@
             <div class="profile__info">
                 <div class="profile__wrap">
                     <h1 class="profile__title reset">Жак-Ив Кусто</h1>
-                    <button class="button profile__button-edit" type="button"></button>
+                    <button type="button" class="button profile__button-edit"></button>
                 </div>
                 <p class="profile__subtitle reset">Исследователь океана</p>
             </div>
-            <button class="button profile__button-add" type="button" ></button>
+            <button type="button" class="button profile__button-add"></button>
         </section>
 
         <section class="elements">
@@ -33,7 +33,7 @@
                 <img src="images/karachaevsk.jpg" alt="Сентинский храм на холме на территории Карачаево-Черкессии" class="element__image">
                 <figcaption class="element__scription">
                     <h2 class="element__scription-title reset">Карачаевск</h2>
-                    <button class="button element__scription-button reset" type="button"></button>
+                    <button type="button" class="button element__scription-button reset"></button>
                 </figcaption>
             </figure>
 
@@ -41,7 +41,7 @@
                 <img src="images/elbrus.jpg" alt="Рассвет на фоне горы Эльбрус" class="element__image">
                 <figcaption class="element__scription">
                     <h2 class="element__scription-title reset">Гора Эльбрус</h2>
-                    <button class="button element__scription-button reset" type="button"></button>
+                    <button type="button" class="button element__scription-button reset"></button>
                 </figcaption>
             </figure>
 
@@ -49,7 +49,7 @@
                 <img src="images/dombay.jpg" alt="Еловый лес на фоне горного хребта Домбай" class="element__image">
                 <figcaption class="element__scription">
                     <h2 class="element__scription-title reset">Домбай</h2>
-                    <button class=" button element__scription-button reset" type="button"></button>
+                    <button type="button" class=" button element__scription-button reset"></button>
                 </figcaption>
             </figure>
 
@@ -57,7 +57,7 @@
                 <img src="images/elbrus.jpg" alt="Рассвет на фоне горы Эльбрус" class="element__image">
                 <figcaption class="element__scription">
                     <h2 class="element__scription-title reset">Гора Эльбрус</h2>
-                    <button class="button element__scription-button reset" type="button"></button>
+                    <button type="button" class="button element__scription-button reset"></button>
                 </figcaption>
             </figure>
 
@@ -65,7 +65,7 @@
                 <img src="images/dombay.jpg" alt="Еловый лес на фоне горного хребта Домбай" class="element__image">
                 <figcaption class="element__scription">
                     <h2 class="element__scription-title reset">Домбай</h2>
-                    <button class="button element__scription-button reset" type="button"></button>
+                    <button type="button" class="button element__scription-button reset"></button>
                 </figcaption>
             </figure>
 
@@ -73,7 +73,7 @@
                 <img src="images/karachaevsk.jpg" alt="Сентинский храм на холме на территории Карачаево-Черкессии" class="element__image">
                 <figcaption class="element__scription">
                     <h2 class="element__scription-title reset">Карачаево-Черкессия</h2>
-                    <button class="button element__scription-button reset" type="button"></button>
+                    <button type="button" class="button element__scription-button reset"></button>
                 </figcaption>
             </figure>
 
@@ -89,10 +89,10 @@
         <div class="popup__container">
             <button class="button popup__button-close reset" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="popup-form" class="popup__form" >
-                <input type="text" name="popup-value-title" placeholder="Ваше имя" class="popup__input popup__input_value_title reset">
-                <input type="text" name="popup-value-subtitle" placeholder="Ваша деятельность" class="popup__input popup__input_value_subtitle reset">
-                <button class="button popup__button-submit reset" type="submit">Сохранить</button>
+            <form name="form" class="popup__form" >
+                <input type="text" name="title" placeholder="Ваше имя" class="popup__input popup__input_value_title reset" required>
+                <input type="text" name="subtitle" placeholder="Ваша деятельность" class="popup__input popup__input_value_subtitle reset" required>
+                <button type="submit" class="button popup__button-submit reset">Сохранить</button>
             </form>
         </div>
     </section>
