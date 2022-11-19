@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto Russia</title>
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="page">
+
+    <header class="header">
+        <a href="#"><img src="images/logo.svg" alt="Место Россия" class="header__logo button"></a>
+    </header>
+
+    <main class="content">
+
+        <section class="profile">
+            <img src="images/profile.jpg" alt="Улыбающийся Жак-Ив Кусто в красной шапке" class="profile__avatar">
+            <div class="profile__info">
+                <div class="profile__wrap">
+                    <h1 class="profile__title reset">Жак-Ив Кусто</h1>
+                    <button class="button profile__button-edit" type="button"></button>
+                </div>
+                <p class="profile__subtitle reset">Исследователь океана</p>
+            </div>
+            <button class="button profile__button-add" type="button" ></button>
+        </section>
+
+        <section class="elements">
+
+            <figure class="element reset">
+                <img src="images/karachaevsk.jpg" alt="Сентинский храм на холме на территории Карачаево-Черкессии" class="element__image">
+                <figcaption class="element__scription">
+                    <h2 class="element__scription-title reset">Карачаевск</h2>
+                    <button class="button element__scription-button reset" type="button"></button>
+                </figcaption>
+            </figure>
+
+            <figure class="element reset">
+                <img src="images/elbrus.jpg" alt="Рассвет на фоне горы Эльбрус" class="element__image">
+                <figcaption class="element__scription">
+                    <h2 class="element__scription-title reset">Гора Эльбрус</h2>
+                    <button class="button element__scription-button reset" type="button"></button>
+                </figcaption>
+            </figure>
+
+            <figure class="element reset">
+                <img src="images/dombay.jpg" alt="Еловый лес на фоне горного хребта Домбай" class="element__image">
+                <figcaption class="element__scription">
+                    <h2 class="element__scription-title reset">Домбай</h2>
+                    <button class=" button element__scription-button reset" type="button"></button>
+                </figcaption>
+            </figure>
+
+            <figure class="element reset">
+                <img src="images/elbrus.jpg" alt="Рассвет на фоне горы Эльбрус" class="element__image">
+                <figcaption class="element__scription">
+                    <h2 class="element__scription-title reset">Гора Эльбрус</h2>
+                    <button class="button element__scription-button reset" type="button"></button>
+                </figcaption>
+            </figure>
+
+            <figure class="element reset">
+                <img src="images/dombay.jpg" alt="Еловый лес на фоне горного хребта Домбай" class="element__image">
+                <figcaption class="element__scription">
+                    <h2 class="element__scription-title reset">Домбай</h2>
+                    <button class="button element__scription-button reset" type="button"></button>
+                </figcaption>
+            </figure>
+
+            <figure class="element reset">
+                <img src="images/karachaevsk.jpg" alt="Сентинский храм на холме на территории Карачаево-Черкессии" class="element__image">
+                <figcaption class="element__scription">
+                    <h2 class="element__scription-title reset">Карачаево-Черкессия</h2>
+                    <button class="button element__scription-button reset" type="button"></button>
+                </figcaption>
+            </figure>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copyright reset">© 2022 Mesto Russia</p>
+    </footer>
+
+    <section class="popup">
+        <div class="popup__container">
+            <button class="button popup__button-close reset" type="button"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form name="popup-form" class="popup__form" >
+                <input type="text" name="popup-value-title" placeholder="Ваше имя" class="popup__input popup__input_value_title reset">
+                <input type="text" name="popup-value-subtitle" placeholder="Ваша деятельность" class="popup__input popup__input_value_subtitle reset">
+                <button class="button popup__button-submit reset" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>

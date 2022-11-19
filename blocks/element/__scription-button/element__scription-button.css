@@ -1,0 +1,7 @@
+.element__scription-button {
+    max-width: 22px;
+    width: 100%;
+    height: 19px;
+    background-image: url(../../../images/scription-button.svg);
+    transition: .4s;
+}
