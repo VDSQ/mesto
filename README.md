@@ -1,4 +1,4 @@
-<p align="center"><img src="images/logo.svg"></p>
+<h1 align="center">MESTO Russia</h1>
 
 [Yandex. Practicum](https://praktikum.yandex.ru)
 
