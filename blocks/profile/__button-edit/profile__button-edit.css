@@ -6,3 +6,10 @@
     background-image: url(../../../images/button-edit.svg);
     transition: .4s;
 }
+
+@media screen and (max-width: 767px) {
+    .profile__button-edit  {
+        max-width: 18px;
+        height: 18px;
+    }
+}

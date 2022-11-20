@@ -13,3 +13,9 @@
     color: #fff;
     background-color: #000;
 }
+
+@media screen and (max-width: 767px) {
+    .page {
+        padding: 28px 0 36px;
+    }
+}
