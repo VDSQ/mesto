@@ -1,5 +1,5 @@
 let popup = document.querySelector('.popup');
-let popupContainer = popup.querySelector('.popup__container');
+let popupContainer = popup.querySelector('.popup__container'); //Без неё не работает pop-up
 let popupButtonClose = popupContainer.querySelector('.popup__button-close');
 let popupForm = popupContainer.querySelector('.popup__form');
 let popupTitlePlace = popupForm.querySelector('.popup__input_value_title');
@@ -11,7 +11,6 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 
 function popupOpen() {
     popup.classList.add('popup_opened');
-    popup.removeEventListener('click', popupOpen);
 
     popupTitlePlace.value = profileTitle.textContent;
     popupSubtitlePlace.value = profileSubtitle.textContent;

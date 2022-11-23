@@ -4,6 +4,7 @@
     border: 2px solid #fff;
     border-radius: 2px;
     background-image: url(../../../images/button-add.svg);
+    background-size: 22px 22px;
     transition: .4s;
 }
 
@@ -11,5 +12,6 @@
     .profile__button-add {
         margin-top: 36px;
         width: 100%;
+        background-size: 16px 16px;
     }
 }

@@ -7,6 +7,9 @@
     background-image: url(../../../images/button-close.svg);
     background-size: cover;
     transition: .4s;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 @media screen and (max-width: 767px) {
