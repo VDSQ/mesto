@@ -1,14 +1,11 @@
 .popup__form {
     display: flex;
     flex-direction: column;
-    max-width: calc(100% - (36px * 2));
-    width: 100%;
-    margin: 0 auto 37px;
+    margin-top: 12px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 767px) {
     .popup__form {
-        max-width: calc(100% - (22px * 2));
-        margin: 0 auto 25px;
+        margin-top: 37px;
     }
 }

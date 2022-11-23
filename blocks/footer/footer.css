@@ -1,9 +1,17 @@
 .footer {
-    padding-top: 67px;
+    display: flex;
+    max-width: 880px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+    .footer {
+        max-width: 696px;
+    }
 }
 
 @media screen and (max-width: 767px) {
     .footer {
-        padding-top: 48px;
+        max-width: 282px;
     }
 }

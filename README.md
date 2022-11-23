@@ -21,11 +21,9 @@
 # GH Pages
 [Clickable](https://vdsq.github.io/mesto/) 
 
-
 ---
 
-
-<p align="center"><img src="images/logo.svg"></p>
+<h1 align="center">MESTO Russia</h1>
 
 [Яндекс. Практикум](https://praktikum.yandex.ru)
 

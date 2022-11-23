@@ -1,9 +1,18 @@
 .content {
-    padding-top: 36px;
+    max-width: 880px;
+    width: 100%;
+    padding: 36px 0 67px;
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 1023px) {
     .content {
-        padding: 38px 19px 0;
+        max-width: 696px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .content {
+        max-width: 282px;
+        padding: 38px 0 48px;
     }
 }
