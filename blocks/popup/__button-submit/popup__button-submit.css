@@ -12,7 +12,7 @@
 }
 
 .popup__button-submit:hover {
-    opacity: .8;
+    background-color: rgba(0, 0, 0, .8);
 }
 
 @media screen and (max-width: 767px) {

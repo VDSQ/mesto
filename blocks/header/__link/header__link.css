@@ -1,6 +1,11 @@
 .header__link {
     display: flex;
     align-self: baseline;
+    transition: .4s;
+}
+
+.header__link:hover {
+    opacity: .6;
 }
 
 @media screen and (max-width: 767px) {

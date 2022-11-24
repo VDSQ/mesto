@@ -1,7 +1,6 @@
 let popup = document.querySelector('.popup');
-let popupContainer = popup.querySelector('.popup__container'); //Без неё не работает pop-up
-let popupButtonClose = popupContainer.querySelector('.popup__button-close');
-let popupForm = popupContainer.querySelector('.popup__form');
+let popupButtonClose = document.querySelector('.popup__button-close');
+let popupForm = document.querySelector('.popup__form');
 let popupTitlePlace = popupForm.querySelector('.popup__input_value_title');
 let popupSubtitlePlace = popupForm.querySelector('.popup__input_value_subtitle');
 
