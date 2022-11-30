@@ -1,0 +1,15 @@
+.element__bin-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 19px;
+    padding: 0;
+    border: 0;
+    background-image: url(../../../images/bin.svg);
+    transition: .4s;
+}
+
+.element__bin-button:hover {
+    opacity: .6;
+}

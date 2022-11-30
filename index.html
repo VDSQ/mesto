@@ -10,74 +10,24 @@
 <body class="page">
 
     <header class="header">
-        <a href="#" class="header__link"><img src="images/logo.svg" alt="Место Россия" class="header__logo"></a>
+        <a class="header__link" href="#"><img src="images/logo.svg" alt="Место Россия" class="header__logo"></a>
     </header>
 
     <main class="content">
 
         <section class="profile">
-            <img src="images/profile.jpg" alt="Улыбающийся Жак-Ив Кусто в красной шапке" class="profile__avatar">
+            <img class="profile__avatar" src="images/profile.jpg" alt="Улыбающийся Жак-Ив Кусто в красной шапке">
             <div class="profile__info">
                 <div class="profile__wrap">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="button" class="button profile__button-edit" aria-label="Редактировать профиль"></button>
+                    <button class="button profile__button-edit" aria-label="Редактировать профиль" type="button"></button>
                 </div>
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <button type="button" class="button profile__button-add" aria-label="Add new card"></button>
+            <button class="button profile__button-add" aria-label="Добавить новую карточку" type="button" ></button>
         </section>
 
-        <section class="elements">
-
-            <article class="element">
-                <img src="images/karachaevsk.jpg" alt="Сентинский храм на холме на территории Карачаево-Черкессии" class="element__image">
-                <div class="element__scription">
-                    <h2 class="element__scription-title">Карачаевск</h2>
-                    <button type="button" class="button element__scription-button" aria-label="Нравится"></button>
-                </div>
-            </article>
-
-            <article class="element">
-                <img src="images/elbrus.jpg" alt="Рассвет на фоне горы Эльбрус" class="element__image">
-                <div class="element__scription">
-                    <h2 class="element__scription-title">Гора Эльбрус</h2>
-                    <button type="button" class="button element__scription-button" aria-label="Нравится"></button>
-                </div>
-            </article>
-
-            <article class="element">
-                <img src="images/dombay.jpg" alt="Еловый лес на фоне горного хребта Домбай" class="element__image">
-                <div class="element__scription">
-                    <h2 class="element__scription-title">Домбай</h2>
-                    <button type="button" class="button element__scription-button" aria-label="Нравится"></button>
-                </div>
-            </article>
-
-            <article class="element">
-                <img src="images/elbrus.jpg" alt="Рассвет на фоне горы Эльбрус" class="element__image">
-                <div class="element__scription">
-                    <h2 class="element__scription-title">Гора Эльбрус</h2>
-                    <button type="button" class="button element__scription-button" aria-label="Нравится"></button>
-                </div>
-            </article>
-
-            <article class="element">
-                <img src="images/dombay.jpg" alt="Еловый лес на фоне горного хребта Домбай" class="element__image">
-                <div class="element__scription">
-                    <h2 class="element__scription-title">Домбай</h2>
-                    <button type="button" class="button element__scription-button" aria-label="Нравится"></button>
-                </div>
-            </article>
-
-            <article class="element">
-                <img src="images/karachaevsk.jpg" alt="Сентинский храм на холме на территории Карачаево-Черкессии" class="element__image">
-                <div class="element__scription">
-                    <h2 class="element__scription-title">Карачаево-Черкессия</h2>
-                    <button type="button" class="button element__scription-button" aria-label="Нравится"></button>
-                </div>
-            </article>
-
-        </section>
+        <section class="elements"></section>
 
     </main>
 
@@ -85,17 +35,48 @@
         <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup" id="popup-edit">
         <div class="popup__container">
-            <button class="button popup__button-close" type="button" aria-label="Закрыть"></button>
+            <button class="button popup__button-close" aria-label="Закрыть" type="button" ></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="form" class="popup__form" >
-                <input type="text" name="title" placeholder="Ваше имя" class="popup__input popup__input_value_title" required>
-                <input type="text" name="subtitle" placeholder="Ваша деятельность" class="popup__input popup__input_value_subtitle" required>
-                <button type="submit" class="button popup__button-submit">Сохранить</button>
+            <form class="popup__form" id="popup-form-edit" name="form" >
+                <input class="popup__input popup__input_value_title" type="text" name="title" placeholder="Ваше имя" required>
+                <input class="popup__input popup__input_value_subtitle" type="text" name="subtitle" placeholder="Ваша деятельность" required>
+                <button class="button popup__button-submit" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
+
+    <div class="popup" id="popup-add">
+        <div class="popup__container">
+            <button class="button popup__button-close" aria-label="Закрыть" type="button"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" id="popup-form-add" name="form" >
+                <input class="popup__input popup__input_value_name" type="text" name="title" placeholder="Название" required>
+                <input class="popup__input popup__input_value_image" type="url" name="subtitle" placeholder="Ссылка на картинку" required>
+                <button class="button popup__button-submit" type="submit" >Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_dimmer" id="popup-image">
+        <div class="popup__wrap">
+            <button class="button popup__button-close" aria-label="Закрыть" type="button"></button>
+            <img class="popup__image" src="#" alt="Изображение">
+            <p class="popup__text"></p>
+        </div>
+    </div>
+
+    <template id="element">
+        <article class="element">
+            <img class="element__image" src="#" alt="Изображение">
+            <button class="button element__bin-button" aria-label="Удалить" type="button" ></button>
+            <div class="element__scription">
+                <h2 class="element__scription-title">Карачаевск</h2>
+                <button class="button element__scription-button" aria-label="Нравится" type="button"></button>
+            </div>
+        </article>
+    </template>
 
     <script src="scripts/index.js"></script>
 </body>
