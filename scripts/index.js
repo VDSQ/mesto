@@ -26,7 +26,7 @@ const initialCards = [
   ];
 
 
-const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
 const popupImage = document.querySelector('#popup-image');
@@ -60,6 +60,7 @@ function addCard(name, link) {
 
     elementTitle.textContent = name;
     elementImage.src = link;
+	elementImage.alt = 'Фотография местности';
 
     element.querySelector('.element__bin-button').addEventListener('click', evt => {
         evt.target.closest('.element').remove();
@@ -87,7 +88,7 @@ initialCards.forEach(item => {
     insertCard(elements, addCard(item.name, item.link));
 });
 
-popup.forEach(object => {
+popups.forEach(object => {
     object.querySelector('.popup__button-close').addEventListener('click', () => {
         closePopup(object);
     });
