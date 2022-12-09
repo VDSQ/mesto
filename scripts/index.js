@@ -42,6 +42,10 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const profileButtonAdd = document.querySelector('.profile__button-add');
 
+const popupImg = document.querySelector('.popup__image');
+const popupText = document.querySelector('.popup__text');
+
+
 const elements = document.querySelector('.elements');
 
 function openPopup(popup) {
@@ -60,7 +64,6 @@ function addCard(name, link) {
 
     elementTitle.textContent = name;
     elementImage.src = link;
-	elementImage.alt = 'Фотография местности';
 
     element.querySelector('.element__bin-button').addEventListener('click', evt => {
         evt.target.closest('.element').remove();
@@ -71,8 +74,9 @@ function addCard(name, link) {
     });
 
     element.querySelector('.element__image').addEventListener('click', evt => {
-        document.querySelector('.popup__image').src = evt.target.src;
-        document.querySelector('.popup__text').textContent = name;
+        popupImg.src = evt.target.src;
+        popupImg.alt = 'Фотография местности ' + name;
+        popupText.textContent = name;
 
         openPopup(popupImage);
     });
