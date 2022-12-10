@@ -65,7 +65,7 @@ function createCard(name, link) {
   cardTemplateImg.src = link;
   cardTemplateImg.alt = name;
 
-  let cardElement = cardTemplate.content.cloneNode(true);
+  const cardElement = cardTemplate.content.cloneNode(true);
 
   cardElement.querySelector('.element__bin-button').addEventListener('click', evt => {
     evt.target.closest('.element').remove();
@@ -90,7 +90,7 @@ function createCard(name, link) {
 }
 
 function createCards() {
-  let cards = [];
+  const cards = [];
   for (let card of initialCards) {
     cards.push(createCard(card.name, card.link));
   }
