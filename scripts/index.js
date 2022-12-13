@@ -52,12 +52,23 @@ const popupAddForm = popupAdd.querySelector('.popup__form');
 const popupAddFormName = popupAddForm.querySelector('.popup__input_value_name');
 const popupAddFormImg = popupAddForm.querySelector('.popup__input_value_image');
 
+function pressEsc(evt) {
+  const popupOpen = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(popupOpen);
+  }
+}
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
+  document.addEventListener('keydown', pressEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+
+  document.removeEventListener('keydown', pressEsc);
 }
 
 function createCard(name, link) {
