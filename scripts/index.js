@@ -52,23 +52,36 @@ const popupAddForm = popupAdd.querySelector('.popup__form');
 const popupAddFormName = popupAddForm.querySelector('.popup__input_value_name');
 const popupAddFormImg = popupAddForm.querySelector('.popup__input_value_image');
 
-function pressEsc(evt) {
-  const popupOpen = document.querySelector('.popup_opened');
+function processMousedownPopup(evt, popup) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popup);
+  }
+}
+
+function processKeydownPopup(evt, popup) {
   if (evt.key === 'Escape') {
-    closePopup(popupOpen);
+    closePopup(popup);
   }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 
-  document.addEventListener('keydown', pressEsc);
+  document.addEventListener('keydown', evt => {
+    processKeydownPopup(evt, popup)
+  });
+
+  document.addEventListener('mousedown', evt => {
+    processMousedownPopup(evt, popup)
+  });
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
-  document.removeEventListener('keydown', pressEsc);
+  document.removeEventListener('keydown', processKeydownPopup);
+
+  document.removeEventListener('mousedown', processMousedownPopup);
 }
 
 function createCard(name, link) {
