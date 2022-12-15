@@ -10,7 +10,7 @@ function addStatusSubmitButton(form, submitButton, inactiveButtonClass) {
 	}
 }
 
-function validityInput(form, input, inputErrorClass) {
+function validateInput(form, input, inputErrorClass) {
 	const error = form.querySelector(`#${input.name}-error`);
 
 	if (!input.validity.valid) {
@@ -22,7 +22,7 @@ function validityInput(form, input, inputErrorClass) {
 	}
 }
 
-function enableValid(config) {
+function enableValidation(config) {
 	const forms = document.querySelectorAll(config.formSelector);
 
 	forms.forEach((form) => {
@@ -31,16 +31,22 @@ function enableValid(config) {
 
 		inputs.forEach((input) => {
 			input.addEventListener('input', () => {
-				validityInput(form, input, config.inputErrorClass);
+				validateInput(form, input, config.inputErrorClass);
 				addStatusSubmitButton(form, submitButton, config.inactiveButtonClass);
 			});
 		});
 		
 		addStatusSubmitButton(form, submitButton, config.inactiveButtonClass);
+
+		form.addEventListener('reset', () => {
+			setTimeout(() => {
+			  addStatusSubmitButton(form, submitButton, config.inactiveButtonClass);
+			}, 0); 
+		  });
 	});
 }
 
-enableValid({
+enableValidation({
 	formSelector: '.popup__form',
 	inputSelector: '.popup__input',
 	submitButtonSelector: '.popup__button-submit',
