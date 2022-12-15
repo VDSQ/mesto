@@ -68,11 +68,11 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 
   document.addEventListener('keydown', evt => {
-    processKeydownPopup(evt, popup)
+    processKeydownPopup(evt, popup);
   });
 
   document.addEventListener('mousedown', evt => {
-    processMousedownPopup(evt, popup)
+    processMousedownPopup(evt, popup);  
   });
 }
 
