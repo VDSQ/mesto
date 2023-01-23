@@ -1,50 +1,40 @@
-import { pressingOnImg } from "./index.js";
-
 export default class Card {
-	constructor(data, templateSelector) {
-		this._link = data.link;
-		this._name = data.name;
+	constructor(name, link, templateSelector, openPopupImage) {
+		this._name = name;
+		this._link = link;
 		this._templateSelector = templateSelector;
+		this._openImageCallback = openPopupImage;
 	}
 
-	_takeTemplate() {
-		const cardElement = document
-			.querySelector(this._templateSelector)
-			.content
-			.querySelector(".element")
-			.cloneNode(true);
+	_setListeners = (card) => {
+		const removeButton = card.querySelector('.element__bin-button');
+		removeButton.addEventListener('click', evt => {
+			evt.target.closest('.element').remove();
+		})
 
-		return cardElement;
-	}
+		const likeButton = card.querySelector(".element__scription-button");
+		likeButton.addEventListener('click', evt => {
+			evt.target.classList.toggle("element__scription-button_active");
+		})
 
-	_pressingDeleteCardFromPage = () => {
-		this._element.remove();
-	}
-
-	_pressingLikeCardFromPage = () => {
-		this._elementButtonLike.classList.toggle("element__scription-button_active");
+		const image = card.querySelector('.element__image');
+		image.addEventListener('click', evt => {
+			this._openImageCallback(this._name, this._link);
+		})
 	};
 
-	_setEventListeners = () => {
-		this._elemenButtonDelete.addEventListener('click', this._pressingDeleteCardFromPage);
-		this._elementButtonLike.addEventListener('click', this._pressingLikeCardFromPage);
-		this._elementImage.addEventListener('click', () => {
-			pressingOnImg(this._name, this._link);
-		});
-	};
+	create = () => {
+		const card = document.querySelector(this._templateSelector).content.cloneNode(true);
 
-	generateCard = () => {
-		this._element = this._takeTemplate();
-		this._elementImage = this._element.querySelector(".element__image");
-		this._elementTitle = this._element.querySelector(".element__scription-title");
-		this._elementButtonLike = this._element.querySelector(".element__scription-button");
-		this._elemenButtonDelete = this._element.querySelector(".element__bin-button");
-		this._setEventListeners();
+		const title = card.querySelector('.element__scription-title');
+		title.textContent = this._name;
 
-		this._elementTitle.textContent = this._name;
-		this._elementImage.src = this._link;
-		this._elementImage.alt = "Фотография местности " + this._name;
+		const image = card.querySelector('.element__image');
+		image.src = this._link;
+		image.alt = this._name;
 
-		return this._element;
+		this._setListeners(card);
+
+		return card;
 	};
 }
