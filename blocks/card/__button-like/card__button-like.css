@@ -1,4 +1,4 @@
-.element__scription-button {
+.card__button-like {
     min-width: 22px;
     min-height: 19px;
     margin: 0;
@@ -8,6 +8,6 @@
     transition: .4s;
 }
 
-.element__scription-button:hover {
+.card__button-like:hover {
     opacity: .5;
 }

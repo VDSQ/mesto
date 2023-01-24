@@ -1,4 +1,4 @@
-.element__bin-button {
+.card__button-remove {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -10,6 +10,6 @@
     transition: .4s;
 }
 
-.element__bin-button:hover {
+.card__button-remove:hover {
     opacity: .6;
 }
