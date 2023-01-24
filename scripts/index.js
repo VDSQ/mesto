@@ -12,9 +12,9 @@ const profileDomElements = {
 
 // ----- Popup -----
 const popupDomElements = {
-  profile: document.querySelector(".popup__profile-edit"),
-  card: document.querySelector(".popup__card-add"),
-  image: document.querySelector(".popup__image")
+  profile: document.querySelector(".popup_profile-edit"),
+  card: document.querySelector(".popup_card-add"),
+  image: document.querySelector(".popup_image")
 };
 
 function closePopupByEscape(evt) {
@@ -38,8 +38,8 @@ function openPopup(popup) {
 
 // ----- Card -----
 const cards = document.querySelector(".cards");
-const imgPopupImage = document.querySelector(".popup__image_img");
-const textPopupImage = document.querySelector(".popup__image_text");
+const imgPopupImage = document.querySelector(".popup__image-img");
+const textPopupImage = document.querySelector(".popup__image-text");
 const cardConfig = {
   templateSelector: "template",
   cardSelector: "card",

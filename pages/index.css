@@ -21,16 +21,16 @@
 @import url(../blocks/profile/__button-edit/profile__button-edit.css);
 @import url(../blocks/profile/__job/profile__job.css);
 @import url(../blocks/profile/__button-add/profile__button-add.css);
-/* elements */
+/* cards */
 @import url(../blocks/cards/cards.css);
-/* element */
+/* card */
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__image/card__image.css);
+@import url(../blocks/card/__button-remove/card__button-remove.css);
 @import url(../blocks/card/__scription/card__scription.css);
 @import url(../blocks/card/__scription-title/card__scription-title.css);
 @import url(../blocks/card/__button-like/card__button-like.css);
 @import url(../blocks/card/__button-like/_active/card__button-like_active.css);
-@import url(../blocks/card/__button-remove/card__button-remove.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
@@ -46,7 +46,7 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__button-submit/popup__button-submit.css);
 @import url(../blocks/popup/__button-submit/_invalid/popup__button-submit_invalid.css);
-@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/_image/popup_image.css);
 @import url(../blocks/popup/__image-content/popup__image-content.css);
-@import url(../blocks/popup/__image/_img/popup__image_img.css);
-@import url(../blocks/popup/__image/_text/popup__image_text.css);
+@import url(../blocks/popup/_image/-img/popup__image-img.css);
+@import url(../blocks/popup/_image/-text/popup__image-text.css);
