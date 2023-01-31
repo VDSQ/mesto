@@ -13,14 +13,14 @@
 
 	<header class="header">
 		<a class="header__link" href="#">
-			<img src="images/logo.svg" alt="Место Россия" class="header__logo">
+			<img src="<%=require('./images/logo.svg')%>" alt="Место Россия" class="header__logo">
 		</a>
 	</header>
 
 	<main class="content">
 
 		<section class="profile">
-			<img class="profile__avatar" src="images/profile.jpg" alt="Улыбающийся Жак-Ив Кусто в красной шапке">
+			<img class="profile__avatar" src="<%=require('./images/profile.jpg')%>" alt="Улыбающийся Жак-Ив Кусто в красной шапке">
 			<div class="profile__info">
 				<div class="profile__title">
 					<h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -54,7 +54,7 @@
 			</form>
 		</div>
 	</div>
-
+	
 	<div class="popup popup_card-add">
 		<div class="popup__content">
 			<button class="button popup__button-close" aria-label="Закрыть" type="button"></button>

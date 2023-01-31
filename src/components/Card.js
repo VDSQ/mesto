@@ -1,9 +1,14 @@
 export default class Card {
-	constructor(name, link, config, openPopupImage) {
+	constructor(name, link, config, openImageCallback) {
 		this._name = name;
 		this._link = link;
 		this._config = config;
-		this._openImageCallback = openPopupImage;
+		this._openImageCallback = openImageCallback;
+		this._card = document.querySelector(`#${this._config.templateSelector}`).content.cloneNode(true);
+		this._title = this._card.querySelector(`.${this._config.titleSelector}`);
+		this._image = this._card.querySelector(`.${this._config.imageSelector}`);
+		this._deleteButton = this._card.querySelector(`.${this._config.deleteButtonSelector}`);
+		this._likeButton = this._card.querySelector(`.${this._config.likeButtonSelector}`);
 	}
 
 	_deleteCard = (evt) => {
@@ -25,12 +30,6 @@ export default class Card {
 	};
 
 	create = () => {
-		this._card = document.querySelector(`#${this._config.templateSelector}`).content.cloneNode(true);
-		this._title = this._card.querySelector(`.${this._config.titleSelector}`);
-		this._image = this._card.querySelector(`.${this._config.imageSelector}`);
-		this._deleteButton = this._card.querySelector(`.${this._config.deleteButtonSelector}`);
-		this._likeButton = this._card.querySelector(`.${this._config.likeButtonSelector}`);
-
 		this._title.textContent = this._name;
 		this._image.alt = this._name;
 		this._image.src = this._link;

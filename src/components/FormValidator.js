@@ -2,6 +2,8 @@ export default class FormValidator {
 	constructor(config, form) {
 		this._config = config;
 		this._form = form;
+		this._inputList = this._form.querySelectorAll(`.${this._config.inputSelector}`);
+		this._submitButton = this._form.querySelector(`.${this._config.submitButtonSelector}`);
 	}
 
 	_setSubmitButtonState = () => {
@@ -42,9 +44,6 @@ export default class FormValidator {
 	}
 
 	enableValidation = () => {
-		this._inputList = this._form.querySelectorAll(`.${this._config.inputSelector}`);
-		this._submitButton = this._form.querySelector(`.${this._config.submitButtonSelector}`);
-
 		this._setEventListeners();
 		this._setSubmitButtonState();
 	};
