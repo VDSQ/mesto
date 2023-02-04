@@ -1,9 +1,10 @@
 export default class Popup {
-	constructor(selector, container, config) {
+  constructor(selector, config) {
     this._selector = selector;
-    this._container = container;
     this._config = config;
-	}
+
+    this._create();
+  }
 
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
@@ -12,29 +13,32 @@ export default class Popup {
   }
 
   _handleCLickClose = (evt) => {
-    if (evt.target.classList.contains(this._config.overlaySelector)) {
-      this.close();
-    } else if (evt.target.classList.contains(this._config.closeButtonSelector)) {
+    if (evt.target.classList.contains(this._config.overlayClass) ||
+      evt.target.classList.contains(this._config.closeButtonClass)) {
       this.close();
     }
   }
 
   _setEventListeners() {
     document.addEventListener("keydown", this._handleEscClose);
-    this._container.addEventListener("mousedown", this._handleCLickClose);
+    this._popup.addEventListener("mousedown", this._handleCLickClose);
   }
 
   _removeEventListeners = () => {
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
+  _create() {
+    this._popup = document.querySelector(this._selector);
+  }
+
   open() {
-    this._container.classList.add(this._config.openedSelector);
+    this._popup.classList.add(this._config.openedClass);
     this._setEventListeners();
   }
 
   close() {
-    this._container.classList.remove(this._config.openedSelector);
+    this._popup.classList.remove(this._config.openedClass);
     this._removeEventListeners();
   }
 }
