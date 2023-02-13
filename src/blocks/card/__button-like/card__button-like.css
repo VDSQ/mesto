@@ -1,13 +1,13 @@
 .card__button-like {
-    min-width: 22px;
-    min-height: 19px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background-image: url(../../../images/scription-button.svg);
-    transition: .4s;
+  min-width: 22px;
+  min-height: 19px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-image: url(../../../images/scription-button.svg);
+  transition: .4s;
 }
 
 .card__button-like:hover {
-    opacity: .5;
+  opacity: .5;
 }

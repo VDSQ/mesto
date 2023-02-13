@@ -1,34 +1,73 @@
 export default class UserInfo {
-  constructor(config) {
+  constructor(config, api) {
     this._config = config;
+    this._api = api;
 
     this._create();
   }
 
   _create = () => {
     this._name = document.querySelector(this._config.nameSelector);
-    this._job = document.querySelector(this._config.jobSelector);
-    this._editButton = document.querySelector(this._config.editButtonSelector);
-    this._addButton = document.querySelector(this._config.addButtonSelector);
+    this._about = document.querySelector(this._config.aboutSelector);
+    this._avatar = document.querySelector(this._config.avatarSelector);
+    this._button = document.querySelector(this._config.buttonSelector);
+    this._cardButton = document.querySelector(this._config.cardButtonSelector);
+    this._avatarButton = document.querySelector(this._config.avatarButtonSelector);
   }
 
-  get editButton() {
-    return this._editButton;
+  get id() {
+    return this._id;
   }
 
-  get addButton() {
-    return this._addButton;
+  get name() {
+    return this._name;
+  }
+
+  get about() {
+    return this._about;
+  }
+
+  get avatar() {
+    return this._avatar;
+  }
+
+  get button() {
+    return this._button;
+  }
+
+  get cardButton() {
+    return this._cardButton;
+  }
+
+  get avatarButton() {
+    return this._avatarButton;
   }
 
   getUserInfo = () => {
-    return {
-      name: this._name.textContent,
-      job: this._job.textContent
-    }
+    return this._api.getUserInfo()
+      .then((res) => {
+        this._name.textContent = res.name;
+        this._about.textContent = res.about;
+        this._avatar.src = res.avatar;
+        this._avatar.alt = res.name;
+        this._id = res._id;
+      })
+      .catch((err) => console.log("Ошибка: Данные пользователя не загрузились ".concat(err)));
   }
 
   setUserInfo = (data) => {
-    this._name.textContent = data.name;
-    this._job.textContent = data.job;
+    return this._api.setUserInfo(data)
+      .then((res) => {
+        this._name.textContent = res.name;
+        this._about.textContent = res.about;
+        this._avatar.alt = res.name;
+      })
+      .catch((err) => console.log("Ошибка: Данные пользователя не обновились ".concat(err)));
+  }
+
+  setUserAvatar = (data) => {
+    return this._api.setUserAvatar(data)
+      .then((res) => this._avatar.src = res.avatar)
+      .catch((err) => console.log("Ошибка: Аватар пользователя не обновился ".concat(err)));
   }
 }

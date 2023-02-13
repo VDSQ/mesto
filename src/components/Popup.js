@@ -32,6 +32,10 @@ export default class Popup {
     this._popup = document.querySelector(this._selector);
   }
 
+  get popup() {
+    return this._popup;
+  }
+
   open() {
     this._popup.classList.add(this._config.openedClass);
     this._setEventListeners();

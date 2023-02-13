@@ -28,6 +28,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "await": "^0.2.6",
     "core-js": "^3.27.2"
   }
 }

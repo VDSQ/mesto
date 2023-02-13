@@ -1,8 +1,8 @@
 export default class Section {
-  constructor(data, selector) {
-    this._items = data.items;
-    this._renderCallback = data.renderer;
+  constructor(renderer, selector, api) {
+    this._renderCallback = renderer;
     this._selector = selector;
+    this._api = api;
 
     this._create();
   }
@@ -12,10 +12,14 @@ export default class Section {
   }
 
   addItem = (data) => {
-    this._section.prepend(this._renderCallback(data.name, data.image));
+    return this._api.setCard(data)
+      .then((res) => this._section.prepend(this._renderCallback(data = res)))
+      .catch((err) => console.log("Ошибка: Карточка не загрузилась ".concat(err)));
   }
 
   render = () => {
-    this._section.append(...this._items.map(item => this._renderCallback(item.name, item.link)));
+    return this._api.getInitialCards()
+      .then((res) => this._section.append(...res.map(item => this._renderCallback(item))))
+      .catch((err) => console.log("Ошибка: Карточки пользователей не загрузились ".concat(err)));
   }
 }

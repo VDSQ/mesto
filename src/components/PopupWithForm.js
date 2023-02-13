@@ -22,7 +22,7 @@ export default class PopupWithForm extends Popup {
   _handleSubmitForm = (evt) => {
     evt.preventDefault();
     const values = this._getInputValues();
-    this._submitFormCallback(values);
+    this._submitFormCallback(values)
     this.close();
   }
 
@@ -34,10 +34,15 @@ export default class PopupWithForm extends Popup {
   _create = () => {
     this._form = this._popup.querySelector(this._config.formSelector);
     this._inputs = this._form.querySelectorAll(this._config.inputSelector);
+    this._submitButton = this._popup.querySelector(this._config.submitButtonSelector);
   }
 
   get form() {
     return this._form;
+  }
+
+  get submitButton() {
+    return this._submitButton;
   }
 
   close = () => {
