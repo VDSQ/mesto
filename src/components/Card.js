@@ -1,33 +1,34 @@
 export default class Card {
-  constructor(profileId, data, config, openImageCallback, confirmCallback, api) {
+  constructor(
+    profileId, data, config, openImageCallback,
+    confirmCallback, setLikeCallback, deleteLikeCallback
+  ) {
     this._profileId = profileId;
     this._data = data;
     this._config = config;
     this._openImageCallback = openImageCallback;
     this._confirmCallback = confirmCallback;
-    this._api = api;
+    this._setLikeCallback = setLikeCallback;
+    this._deleteLikeCallback = deleteLikeCallback;
 
     this._create();
   }
 
   _delete = () => {
-    return this._api.deleteCard({ _id: this._data._id })
-      .then((res) => this._card.remove())
-      .catch((err) => console.log("Ошибка: Карточка не удалилась ".concat(err)));
+    this._card.remove();
+  }
+
+  _setLikeButtonState = (amount) => {
+    this._likeButton.classList.toggle(this._config.activeLikeButtonClass);
+    this._likeAmount.textContent = amount;
   }
 
   _toggleLike = (evt) => {
     if (!this._likeButton.classList.contains(this._config.activeLikeButtonClass)) {
-      this._api.setLike({ _id: this._data._id })
-        .then((res) => this._likeAmount.textContent = res.likes.length)
-        .catch((err) => console.log("Ошибка: Не удалось установить like ".concat(err)));
+      this._setLikeCallback(this._data._id, this._setLikeButtonState);
     } else {
-      this._api.deleteLike({ _id: this._data._id })
-        .then((res) => this._likeAmount.textContent = res.likes.length)
-        .catch((err) => console.log("Ошибка: Не удалось удалить like ".concat(err)));
+      this._deleteLikeCallback(this._data._id, this._setLikeButtonState);
     }
-
-    evt.target.classList.toggle(this._config.activeLikeButtonClass);
   };
 
   _handleImageClick = () => {
@@ -35,14 +36,10 @@ export default class Card {
   };
 
   _setEventListeners = () => {
-    this._deleteButton.addEventListener("click", () => {
-      this._confirmCallback()
-        .then((res) => {
-          if (res) {
-            this._delete();
-          }
-        });
-    });
+    if (this._data.owner._id === this._profileId) {
+      this._deleteButton.addEventListener("click", () => this._confirmCallback(this._data._id, this._delete));
+    }
+
     this._likeButton.addEventListener("click", this._toggleLike);
     this._image.addEventListener("click", this._handleImageClick);
   };

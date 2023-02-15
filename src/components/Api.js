@@ -3,10 +3,10 @@ export default class Api {
     this._config = config;
   }
 
-  _parseResult = (res) => {
-    if (res) { return res.json(); }
+  _parseResult = (result) => {
+    if (result) { return result.json(); }
 
-    return Promise.reject("Ошибка: ".concat(res.status));
+    return Promise.reject("Ошибка: ".concat(result.status));
   }
 
   getUserInfo() {
@@ -15,11 +15,13 @@ export default class Api {
         method: "GET",
         headers: this._config.headers,
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Данные пользователя не загрузились. ".concat(error));
+      });
   }
 
-  setUserInfo(data) {
+  updateUserInfo(data) {
     return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`,
       {
         method: "PATCH",
@@ -29,11 +31,13 @@ export default class Api {
           about: data.about,
         })
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Данные пользователя не обновились. ".concat(error));
+      });
   }
 
-  setUserAvatar(data) {
+  updateUserAvatar(data) {
     return fetch(`${this._config.baseUrl}${this._config.endpoints.avatar}`,
       {
         method: "PATCH",
@@ -42,8 +46,10 @@ export default class Api {
           avatar: data.avatar
         })
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Аватар пользователя не обновился. ".concat(error));
+      });
   }
 
   getInitialCards() {
@@ -52,8 +58,10 @@ export default class Api {
         method: "GET",
         headers: this._config.headers,
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Карточки пользователей не загрузились. ".concat(error));
+      });
   }
 
   setCard(data) {
@@ -66,37 +74,45 @@ export default class Api {
           link: data.link
         })
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Карточка не загрузилась. ".concat(error));
+      });
   }
 
-  deleteCard(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}/${data._id}`,
+  deleteCard(id) {
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}/${id}`,
       {
         method: "DELETE",
         headers: this._config.headers,
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Карточка не удалилась. ".concat(error));
+      });
   }
 
-  setLike(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${data._id}`,
+  setLike(id) {
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${id}`,
       {
         method: "PUT",
         headers: this._config.headers,
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Не удалось установить like карточки. ".concat(error));
+      });
   }
 
-  deleteLike(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${data._id}`,
+  deleteLike(id) {
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${id}`,
       {
         method: "DELETE",
         headers: this._config.headers,
       })
-      .then((res) => this._parseResult(res))
-      .catch((err) => console.log(err));
+      .then((result) => this._parseResult(result))
+      .catch((error) => {
+        console.error("Не удалось удалить like у карточки. ".concat(error));
+      });
   }
 }

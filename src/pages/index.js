@@ -7,64 +7,48 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import {
+  apiConfig, profileConfig, cardConfig,
+  sectionSelector, popupSelectors, popupConfig,
+  popupImageConfig, popupFormConfig, validationConfig
+} from "../utils/config.js";
 
 // ----- Api -----
-const apiConfig = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
-  headers: {
-    authorization: '415dbb41-8dbe-4370-9d0f-59650845b88a',
-    'Content-Type': 'application/json',
-  },
-  endpoints: {
-    users: "/users/me",
-    avatar: "/users/me/avatar",
-    cards: "/cards",
-    likes: "/cards/likes"
-  }
-}
-
 const api = new Api(apiConfig);
 
 // ----- Profile -----
-const profileConfig = {
-  nameSelector: ".profile__name",
-  aboutSelector: ".profile__about",
-  avatarSelector: ".profile__avatar",
-  buttonSelector: ".profile__button",
-  cardButtonSelector: ".profile__button-card",
-  avatarButtonSelector: ".profile__photo",
-}
-
-const profile = new UserInfo(profileConfig, api);
-await profile.getUserInfo();
+const profile = new UserInfo(profileConfig);
 
 // ----- Card -----
-const cardConfig = {
-  templateSelector: "#template",
-  cardSelector: ".card",
-  titleSelector: ".card__scription-title",
-  imageSelector: ".card__image",
-  deleteButtonSelector: ".card__button-remove",
-  likeButtonSelector: ".card__button-like",
-  likeAmountSelector: ".card__like-amount",
-  activeLikeButtonClass: "card__button-like_active"
-};
-
-function confirm() {
-  popupConfirm.open();
-
-  return new Promise(function (resolve, reject) {
-    popupConfirm
-      .popup
-      .querySelector(popupFormConfig.submitButtonSelector)
-      .addEventListener("click", () => {
-        resolve(true);
-      })
-  })
-    .finally(() => popupConfirm.close());
+function setLike(id, setLikeButtonStateCallback) {
+  api.setLike(id)
+    .then((result) => setLikeButtonStateCallback(result.likes.length))
+    .catch((error) => console.error(error));
 }
 
-function handleCardClick(name, link) {
+function deleteLike(id, setLikeButtonStateCallback) {
+  api.deleteLike(id)
+    .then((result) => setLikeButtonStateCallback(result.likes.length))
+    .catch((error) => console.error(error));
+}
+
+function confirm(id, deleteCallback) {
+  popupConfirm.open();
+
+  popupConfirm
+    .popup
+    .querySelector(popupFormConfig.submitButtonSelector)
+    .addEventListener("click", () => {
+      api.deleteCard(id)
+        .then((result) => {
+          deleteCallback();
+          popupConfirm.close();
+        })
+        .catch((error) => console.error(error));
+    }, { once: true });
+}
+
+function openImage(name, link) {
   popupImage.open(name, link);
 }
 
@@ -73,111 +57,98 @@ function createCard(data) {
     profile.id,
     data,
     cardConfig,
-    handleCardClick,
+    openImage,
     confirm,
-    api
+    setLike,
+    deleteLike
   ).card;
 }
 
 // ----- Section -----
-const sectionSelector = ".cards";
-
 const section = new Section(
   createCard,
-  sectionSelector,
-  api
+  sectionSelector
 );
-section.render();
+
+// ----- Server data -----
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
+  .then((result) => {
+    profile.updateUserInfo(result[0]);
+    section.render(result[1]);
+  })
+  .catch((error) => console.error(error));
 
 // ----- Popup -----
-const popupSelectors = {
-  profile: ".popup_profile",
-  avatar: ".popup_avatar",
-  card: ".popup_card",
-  confirm: ".popup_confirm",
-  image: ".popup_image"
-}
-const popupConfig = {
-  closeButtonClass: "popup__button-close",
-  openedClass: "popup_opened",
-  overlayClass: "popup"
-}
-
 const popupConfirm = new Popup(
   popupSelectors.confirm,
   popupConfig
 );
 
 // ----- PopupWithImage -----
-const popupImageConfig = {
-  ...popupConfig,
-  ...{
-    imageSelector: ".popup__image-img",
-    textSelector: ".popup__image-text"
-  }
-};
-
 const popupImage = new PopupWithImage(
   popupSelectors.image,
   popupImageConfig
 );
 
 // ----- PopupWithForm -----
-const popupFormConfig = {
-  ...popupConfig,
-  ...{
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button-submit"
-  }
-};
-
-function setUserInfo(data) {
+function updateUserInfo(data) {
   popupProfile.submitButton.textContent = "Сохранение...";
-  profile.setUserInfo(data)
-    .finally(() => popupProfile.submitButton.textContent = "Сохранить");
+
+  api.updateUserInfo(data)
+    .then((result) => {
+      profile.updateUserInfo(result);
+      popupProfile.close();
+      popupProfile.submitButton.textContent = "Сохранить";
+    })
+    .catch((error) => console.error(error));
 }
 
 const popupProfile = new PopupWithForm(
   popupSelectors.profile,
   popupFormConfig,
-  setUserInfo
+  updateUserInfo
 );
 
-function setUserAvatar(data) {
+function updateUserAvatar(data) {
   popupAvatar.submitButton.textContent = "Сохранение...";
-  profile.setUserAvatar(data)
-    .finally(() => popupAvatar.submitButton.textContent = "Сохранить");
+
+  api.updateUserAvatar(data)
+    .then((result) => {
+      profile.updateUserAvatar(result);
+      popupAvatar.close();
+      popupAvatar.submitButton.textContent = "Сохранить";
+    })
+    .catch((error) => console.error(error));
 }
 
 const popupAvatar = new PopupWithForm(
   popupSelectors.avatar,
   popupFormConfig,
-  setUserAvatar
+  updateUserAvatar
 );
 
-function addItem(data) {
+function setCard(data) {
   popupCard.submitButton.textContent = "Сохранение...";
-  section.addItem(data)
-    .finally(() => popupCard.submitButton.textContent = "Создать");
+
+  api.setCard(data)
+    .then((result) => {
+      section.addItem(result);
+      popupCard.close();
+      popupCard.submitButton.textContent = "Создать";
+    })
+    .catch((error) => console.error(error));
 }
 
 const popupCard = new PopupWithForm(
   popupSelectors.card,
   popupFormConfig,
-  addItem
+  setCard
 );
 
 // ----- FormValidator -----
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button-submit",
-  errorSelector: ".popup__error",
-  inactiveButtonClass: "popup__button-submit_invalid",
-  inputErrorClass: "popup__input_state_invalid"
-};
-
 const profileValidator = new FormValidator(validationConfig, popupProfile.form);
 profileValidator.enableValidation();
 

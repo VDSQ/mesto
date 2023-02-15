@@ -1,7 +1,6 @@
 export default class UserInfo {
-  constructor(config, api) {
+  constructor(config) {
     this._config = config;
-    this._api = api;
 
     this._create();
   }
@@ -43,31 +42,15 @@ export default class UserInfo {
     return this._avatarButton;
   }
 
-  getUserInfo = () => {
-    return this._api.getUserInfo()
-      .then((res) => {
-        this._name.textContent = res.name;
-        this._about.textContent = res.about;
-        this._avatar.src = res.avatar;
-        this._avatar.alt = res.name;
-        this._id = res._id;
-      })
-      .catch((err) => console.log("Ошибка: Данные пользователя не загрузились ".concat(err)));
+  updateUserInfo = (data) => {
+    this._name.textContent = data.name;
+    this._about.textContent = data.about;
+    this._avatar.src = data.avatar;
+    this._avatar.alt = data.name;
+    this._id = data._id;
   }
 
-  setUserInfo = (data) => {
-    return this._api.setUserInfo(data)
-      .then((res) => {
-        this._name.textContent = res.name;
-        this._about.textContent = res.about;
-        this._avatar.alt = res.name;
-      })
-      .catch((err) => console.log("Ошибка: Данные пользователя не обновились ".concat(err)));
-  }
-
-  setUserAvatar = (data) => {
-    return this._api.setUserAvatar(data)
-      .then((res) => this._avatar.src = res.avatar)
-      .catch((err) => console.log("Ошибка: Аватар пользователя не обновился ".concat(err)));
+  updateUserAvatar = (data) => {
+    this._avatar.src = data.avatar;
   }
 }
