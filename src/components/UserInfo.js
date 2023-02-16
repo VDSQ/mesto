@@ -1,9 +1,9 @@
 export default class UserInfo {
-  constructor(config) {
+	constructor(config) {
     this._config = config;
-
+    
     this._create();
-  }
+	}
 
   _create = () => {
     this._name = document.querySelector(this._config.nameSelector);

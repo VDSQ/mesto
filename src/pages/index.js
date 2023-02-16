@@ -5,12 +5,13 @@ import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import {
+import { 
   apiConfig, profileConfig, cardConfig,
   sectionSelector, popupSelectors, popupConfig,
-  popupImageConfig, popupFormConfig, validationConfig
+  popupImageConfig, popupFormConfig, popupConfirmConfig, validationConfig
 } from "../utils/config.js";
 
 // ----- Api -----
@@ -20,32 +21,29 @@ const api = new Api(apiConfig);
 const profile = new UserInfo(profileConfig);
 
 // ----- Card -----
-function setLike(id, setLikeButtonStateCallback) {
-  api.setLike(id)
-    .then((result) => setLikeButtonStateCallback(result.likes.length))
-    .catch((error) => console.error(error));
-}
-
 function deleteLike(id, setLikeButtonStateCallback) {
   api.deleteLike(id)
     .then((result) => setLikeButtonStateCallback(result.likes.length))
     .catch((error) => console.error(error));
 }
 
-function confirm(id, deleteCallback) {
-  popupConfirm.open();
+function setLike(id, setLikeButtonStateCallback) {
+  api.setLike(id)
+    .then((result) => setLikeButtonStateCallback(result.likes.length))
+    .catch((error) => console.error(error));
+}
 
-  popupConfirm
-    .popup
-    .querySelector(popupFormConfig.submitButtonSelector)
-    .addEventListener("click", () => {
-      api.deleteCard(id)
-        .then((result) => {
-          deleteCallback();
-          popupConfirm.close();
-        })
-        .catch((error) => console.error(error));
-    }, { once: true });
+function deleteCard(id, card) {
+  api.deleteCard(id)
+    .then((result) => {
+      card.remove();
+      popupConfirm.close();
+    })
+    .catch((error) => console.error(error));
+}
+
+function confirm(id, card) {  
+  popupConfirm.open(id, card, deleteCard);
 }
 
 function openImage(name, link) {
@@ -54,10 +52,10 @@ function openImage(name, link) {
 
 function createCard(data) {
   return new Card(
-    profile.id,
-    data,
+    profile.id, 
+    data, 
     cardConfig,
-    openImage,
+    openImage, 
     confirm,
     setLike,
     deleteLike
@@ -82,10 +80,6 @@ Promise.all([
   .catch((error) => console.error(error));
 
 // ----- Popup -----
-const popupConfirm = new Popup(
-  popupSelectors.confirm,
-  popupConfig
-);
 
 // ----- PopupWithImage -----
 const popupImage = new PopupWithImage(
@@ -107,7 +101,7 @@ function updateUserInfo(data) {
 }
 
 const popupProfile = new PopupWithForm(
-  popupSelectors.profile,
+  popupSelectors.profile, 
   popupFormConfig,
   updateUserInfo
 );
@@ -125,7 +119,7 @@ function updateUserAvatar(data) {
 }
 
 const popupAvatar = new PopupWithForm(
-  popupSelectors.avatar,
+  popupSelectors.avatar, 
   popupFormConfig,
   updateUserAvatar
 );
@@ -143,9 +137,15 @@ function setCard(data) {
 }
 
 const popupCard = new PopupWithForm(
-  popupSelectors.card,
+  popupSelectors.card, 
   popupFormConfig,
   setCard
+);
+
+// ----- PopupWithConfirm -----
+const popupConfirm = new PopupWithConfirm(
+  popupSelectors.confirm,
+  popupConfirmConfig
 );
 
 // ----- FormValidator -----

@@ -5,7 +5,7 @@ export default class PopupWithImage extends Popup {
     super(selector, config);
 
     this._create();
-  }
+	}
 
   _create = () => {
     this._image = this._popup.querySelector(this._config.imageSelector);

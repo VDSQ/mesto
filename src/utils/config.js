@@ -46,7 +46,8 @@ export const popupSelectors = {
   confirm: ".popup_confirm",
   image: ".popup_image"
 }
-export const popupConfig = {
+
+export const popupConfig = {  
   closeButtonClass: "popup__button-close",
   openedClass: "popup_opened",
   overlayClass: "popup"
@@ -56,7 +57,7 @@ export const popupConfig = {
 export const popupImageConfig = {
   ...popupConfig,
   ...{
-    imageSelector: ".popup__image-img",
+    imageSelector: ".popup__image-img", 
     textSelector: ".popup__image-text"
   }
 };
@@ -68,6 +69,13 @@ export const popupFormConfig = {
     formSelector: ".popup__form",
     inputSelector: ".popup__input",
     submitButtonSelector: ".popup__button-submit"
+  }
+};
+
+export const popupConfirmConfig = {
+  ...popupConfig,
+  ...{
+    confirmButtonSelector: ".popup__button-confirm"
   }
 };
 

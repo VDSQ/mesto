@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup {
     this._submitFormCallback = submitFormCallback;
 
     this._create();
-  }
+	}
 
   _getInputValues = () => {
     const values = {}
@@ -46,7 +46,7 @@ export default class PopupWithForm extends Popup {
 
   close = () => {
     this._form.reset();
-
+    
     super.close();
   }
 }

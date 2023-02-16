@@ -1,7 +1,7 @@
 export default class Api {
-  constructor(config) {
-    this._config = config;
-  }
+	constructor(config) {
+		this._config = config;
+	}
 
   _parseResult = (result) => {
     if (result) { return result.json(); }
@@ -10,7 +10,7 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`, 
       {
         method: "GET",
         headers: this._config.headers,
@@ -22,7 +22,7 @@ export default class Api {
   }
 
   updateUserInfo(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`, 
       {
         method: "PATCH",
         headers: this._config.headers,
@@ -38,7 +38,7 @@ export default class Api {
   }
 
   updateUserAvatar(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.avatar}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.avatar}`, 
       {
         method: "PATCH",
         headers: this._config.headers,
@@ -53,7 +53,7 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}`, 
       {
         method: "GET",
         headers: this._config.headers,
@@ -65,7 +65,7 @@ export default class Api {
   }
 
   setCard(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}`, 
       {
         method: "POST",
         headers: this._config.headers,
@@ -81,7 +81,7 @@ export default class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}/${id}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}/${id}`, 
       {
         method: "DELETE",
         headers: this._config.headers,
@@ -93,7 +93,7 @@ export default class Api {
   }
 
   setLike(id) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${id}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${id}`, 
       {
         method: "PUT",
         headers: this._config.headers,
@@ -105,7 +105,7 @@ export default class Api {
   }
 
   deleteLike(id) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${id}`,
+    return fetch(`${this._config.baseUrl}${this._config.endpoints.likes}/${id}`, 
       {
         method: "DELETE",
         headers: this._config.headers,

@@ -1,10 +1,10 @@
 export default class Section {
-  constructor(renderer, selector) {
+	constructor(renderer, selector) {
     this._renderCallback = renderer;
     this._selector = selector;
 
     this._create();
-  }
+	}
 
   _create = () => {
     this._section = document.querySelector(this._selector);

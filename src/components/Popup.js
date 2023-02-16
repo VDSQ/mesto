@@ -1,10 +1,10 @@
 export default class Popup {
-  constructor(selector, config) {
+	constructor(selector, config) {
     this._selector = selector;
     this._config = config;
 
     this._create();
-  }
+	}
 
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
@@ -13,8 +13,8 @@ export default class Popup {
   }
 
   _handleCLickClose = (evt) => {
-    if (evt.target.classList.contains(this._config.overlayClass) ||
-      evt.target.classList.contains(this._config.closeButtonClass)) {
+    if  (evt.target.classList.contains(this._config.overlayClass) || 
+        evt.target.classList.contains(this._config.closeButtonClass)) {
       this.close();
     }
   }
